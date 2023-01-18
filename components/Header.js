@@ -74,7 +74,7 @@ export const Header = ({
             ))}
           </ul>
         </nav>
-        {withProfile && (
+        {true && (
           <Profile
             name={settings.data.name}
             description={settings.data.description}

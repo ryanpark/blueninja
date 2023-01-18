@@ -22,7 +22,6 @@ export const Bounded = ({
           size === "widest" && "max-w-6xl"
         )}
       >
-        wtf bounded
         {children}
       </div>
     </Comp>

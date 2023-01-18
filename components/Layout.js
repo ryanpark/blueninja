@@ -17,7 +17,6 @@ export const Layout = ({
         settings={settings}
       />
       <main>{children}</main>
-      <Footer withSignUpForm={withSignUpForm} settings={settings} />
     </div>
   );
 };
