@@ -1,11 +1,10 @@
 import { Header } from "./Header";
-import { Footer } from "./Footer";
 
 export const Layout = ({
   navigation,
   settings,
   withHeaderDivider,
-  withSignUpForm,
+  pagination,
   children,
 }) => {
   return (
@@ -15,6 +14,7 @@ export const Layout = ({
         withDivider={withHeaderDivider}
         navigation={navigation}
         settings={settings}
+        pagination={pagination}
       />
       <main>{children}</main>
     </div>

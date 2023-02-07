@@ -8,10 +8,10 @@ import { HorizontalDivider } from "./HorizontalDivider";
 
 const Profile = ({ name, description, profilePicture }) => {
   return (
-    <div className="px-4">
-      <div className="grid max-w-lg grid-cols-1 justify-items-center gap-8">
+    <div className="">
+      <div className="flex max-w-lg gap-4 py-6">
         <PrismicLink href="/" tabIndex="-1">
-          <div className="bg-slate-300 relative h-40 w-40 overflow-hidden rounded-full">
+          <div className="bg-slate-300 relative top-[6px] h-[30px] w-[30px] overflow-hidden">
             {prismicH.isFilled.image(profilePicture) && (
               <PrismicNextImage
                 field={profilePicture}
@@ -33,7 +33,7 @@ const Profile = ({ name, description, profilePicture }) => {
             )}
             {prismicH.isFilled.richText(description) && (
               <p className="text-slate-500 font-serif text-2xl italic leading-normal tracking-tight">
-                <PrismicText field={description} />
+                <PrismicText field={description} /> here
               </p>
             )}
           </div>
@@ -54,11 +54,18 @@ export const Header = ({
   withProfile = true,
   navigation,
   settings,
+  pagination,
 }) => {
   return (
     <Bounded as="header">
-      <div className="grid grid-cols-1 justify-items-center gap-20">
-        <nav>
+      <Profile
+        name={settings.data.name}
+        description={settings.data.description}
+        profilePicture={settings.data.profilePicture}
+      />
+      <div className="grid grid-cols-1">
+        <nav className="flex justify-between">
+          {pagination}
           <ul className="flex flex-wrap justify-center gap-10">
             <NavItem>
               <PrismicLink href="/">
@@ -74,13 +81,7 @@ export const Header = ({
             ))}
           </ul>
         </nav>
-        {true && (
-          <Profile
-            name={settings.data.name}
-            description={settings.data.description}
-            profilePicture={settings.data.profilePicture}
-          />
-        )}
+
         {withDivider && <HorizontalDivider />}
       </div>
     </Bounded>

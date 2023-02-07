@@ -9,6 +9,7 @@ module.exports = {
     extend: {},
     colors: {
       bgYellow: "#ffff24",
+      textBlue: "#00ffff",
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],

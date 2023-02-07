@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import { PrismicLink, PrismicText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
@@ -7,6 +8,7 @@ import { createClient } from "../prismicio";
 import { Layout } from "../components/Layout";
 import { Bounded } from "../components/Bounded";
 import { Heading } from "../components/Heading";
+import { Pagination } from "../components/Pagination";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -37,7 +39,24 @@ const getExcerpt = (slices) => {
   }
 };
 
-const Article = ({ article }) => {
+const chunkArrayInGroups = (arr, size) => {
+  const result = [];
+  let temp = [];
+
+  for (let a = 0; a < arr.length; a++) {
+    temp.push(arr[a]);
+    if (a % size === size - 1) {
+      result.push(temp);
+      temp = [];
+    }
+  }
+
+  if (temp.length > 0) result.push(temp);
+
+  return result;
+};
+
+const Article = ({ article, index }) => {
   const featuredImage =
     (prismicH.isFilled.image(article.data.featuredImage) &&
       article.data.featuredImage) ||
@@ -46,7 +65,6 @@ const Article = ({ article }) => {
     article.data.publishDate || article.first_publication_date
   );
   const excerpt = getExcerpt(article.data.slices);
-
   return (
     <li className="grid grid-cols-1 items-start gap-6 md:grid-cols-3 md:gap-8">
       <PrismicLink document={article} tabIndex="-1">
@@ -54,7 +72,7 @@ const Article = ({ article }) => {
           {prismicH.isFilled.image(featuredImage) && (
             <PrismicNextImage
               field={featuredImage}
-              fill={true}
+              fill={false}
               className="object-cover"
             />
           )}
@@ -80,21 +98,44 @@ const Article = ({ article }) => {
 };
 
 const Index = ({ articles, navigation, settings }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const groupArticles = chunkArrayInGroups(articles, 3);
+  const updatePage = (page) => {
+    setCurrentIndex(page);
+  };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [currentIndex]);
+
+  const filledArray = Array.from({ length: groupArticles.length }, (e, i) => i);
   return (
     <Layout
       withHeaderDivider={false}
       navigation={navigation}
       settings={settings}
+      pagination={
+        <Pagination
+          pages={filledArray}
+          updatePage={updatePage}
+          currentIndex={currentIndex}
+        />
+      }
     >
       <Head>
-        <title>{prismicH.asText(settings.data.name)}ss</title>
+        <title>{prismicH.asText(settings.data.name)} 블루닌자</title>
       </Head>
       <Bounded size="widest">
         <ul className="grid grid-cols-1 gap-16">
-          {articles.map((article) => (
-            <Article key={article.id} article={article} />
+          {groupArticles[currentIndex].map((article, i) => (
+            <Article key={article.id} article={article} index={i} />
           ))}
         </ul>
+        <Pagination
+          pages={filledArray}
+          updatePage={updatePage}
+          currentIndex={currentIndex}
+        />
       </Bounded>
     </Layout>
   );
@@ -107,9 +148,21 @@ export async function getStaticProps({ previewData }) {
 
   const articles = await client.getAllByType("article", {
     orderings: [
-      { field: "my.article.publishDate", direction: "desc" },
-      { field: "document.first_publication_date", direction: "desc" },
+      {
+        field: "my.article.publishDate",
+        direction: "desc",
+        pageSize: 1,
+        page: 1,
+      },
+      {
+        field: "document.first_publication_date",
+        direction: "desc",
+        pageSize: 1,
+        page: 1,
+      },
     ],
+    pageSize: 1,
+    page: 1,
   });
   const navigation = await client.getSingle("navigation");
   const settings = await client.getSingle("settings");
