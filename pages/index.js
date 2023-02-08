@@ -68,7 +68,7 @@ const Article = ({ article, index }) => {
   return (
     <li className="grid grid-cols-1 items-start gap-6 md:grid-cols-3 md:gap-8">
       <PrismicLink document={article} tabIndex="-1">
-        <div className="bg-gray-100 aspect-w-4 aspect-h-3 relative">
+        <div className="bg-gray-100 aspect-w-4 aspect-h-3 relative border">
           {prismicH.isFilled.image(featuredImage) && (
             <PrismicNextImage
               field={featuredImage}
@@ -119,6 +119,7 @@ const Index = ({ articles, navigation, settings }) => {
           pages={filledArray}
           updatePage={updatePage}
           currentIndex={currentIndex}
+          pos="header"
         />
       }
     >
@@ -135,6 +136,7 @@ const Index = ({ articles, navigation, settings }) => {
           pages={filledArray}
           updatePage={updatePage}
           currentIndex={currentIndex}
+          pos="footer"
         />
       </Bounded>
     </Layout>

@@ -1,6 +1,6 @@
-export const Pagination = ({ pages, updatePage, currentIndex }) => {
+export const Pagination = ({ pages, updatePage, currentIndex, pos }) => {
   return (
-    <ul className="flex gap-x-5">
+    <ul className={`${pos === "footer" && "py-12"} flex gap-x-5`}>
       <li class="text-slate-800 font-semibold tracking-tight">Works</li>
       {pages.map((array, i) => (
         <li key={array} className="text-slate-800 font-semibold tracking-tight">

@@ -66,7 +66,7 @@ export const Header = ({
       <div className="grid grid-cols-1">
         <nav className="flex justify-between">
           {pagination}
-          <ul className="flex flex-wrap justify-center gap-10">
+          <ul className="flex flex-wrap justify-end gap-2 sm:gap-2 md:gap-10 lg:gap-10">
             <NavItem>
               <PrismicLink href="/">
                 <PrismicText field={navigation.data.homepageLabel} />
