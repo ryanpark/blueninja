@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html>
+    <Html className="h-screen bg-bgYellow">
       <title>test</title>
       <Head>
         <link

@@ -25,7 +25,7 @@ const Profile = ({ name, description, profilePicture }) => {
           prismicH.isFilled.richText(description)) && (
           <div className="grid grid-cols-1 gap-2 text-center">
             {prismicH.isFilled.richText(name) && (
-              <Heading>
+              <Heading size="3xl">
                 <PrismicLink href="/">
                   <PrismicText field={name} />
                 </PrismicLink>
@@ -33,7 +33,7 @@ const Profile = ({ name, description, profilePicture }) => {
             )}
             {prismicH.isFilled.richText(description) && (
               <p className="text-slate-500 font-serif text-2xl italic leading-normal tracking-tight">
-                <PrismicText field={description} /> here
+                <PrismicText field={description} />
               </p>
             )}
           </div>
@@ -55,6 +55,7 @@ export const Header = ({
   navigation,
   settings,
   pagination,
+  pathname,
 }) => {
   return (
     <Bounded as="header">
@@ -67,18 +68,14 @@ export const Header = ({
         <nav className="flex justify-between">
           {pagination}
           <ul className="flex flex-wrap justify-end gap-2 sm:gap-2 md:gap-10 lg:gap-10">
-            <NavItem>
-              <PrismicLink href="/">
-                <PrismicText field={navigation.data.homepageLabel} />
-              </PrismicLink>
-            </NavItem>
-            {navigation.data?.links.map((item) => (
-              <NavItem key={prismicH.asText(item.label)}>
-                <PrismicLink field={item.link}>
-                  <PrismicText field={item.label} />
-                </PrismicLink>
-              </NavItem>
-            ))}
+            {!pathname?.includes("/articles/") &&
+              navigation.data?.links.map((item) => (
+                <NavItem key={prismicH.asText(item.label)}>
+                  <PrismicLink field={item.link}>
+                    <PrismicText field={item.label} />
+                  </PrismicLink>
+                </NavItem>
+              ))}
           </ul>
         </nav>
 

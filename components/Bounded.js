@@ -7,7 +7,7 @@ export const Bounded = ({
   children,
 }) => {
   return (
-    <Comp className={clsx(" px-4 pt-8 md:px-6 md:pt-10 lg:py-12", className)}>
+    <Comp className={clsx(" px-4 pt-8 md:px-6 md:pt-10 lg:py-4", className)}>
       <div
         className={clsx(
           "mx-auto w-full",

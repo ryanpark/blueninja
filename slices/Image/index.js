@@ -16,7 +16,7 @@ const Image = ({ slice }) => {
           </div>
         )}
         {prismicH.isFilled.richText(slice.primary.caption) && (
-          <figcaption className="text-slate-500 text-center font-serif italic tracking-tight">
+          <figcaption className="text-slate-500 text-center  tracking-tight">
             <PrismicRichText field={slice.primary.caption} />
           </figcaption>
         )}

@@ -54,7 +54,8 @@ const richTextComponents = {
   ),
 };
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, router }) {
+  const pathname = router.state?.pathname;
   return (
     <PrismicProvider
       internalLinkComponent={(props) => <Link {...props} />}
@@ -87,7 +88,7 @@ export default function App({ Component, pageProps }) {
         </div>
       )}
       <PrismicPreview repositoryName={repositoryName}>
-        <Component {...pageProps} pagination={""} />
+        <Component {...pageProps} pagination={""} pathname={pathname} />
       </PrismicPreview>
     </PrismicProvider>
   );

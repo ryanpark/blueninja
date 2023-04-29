@@ -14,7 +14,7 @@ const SignUpForm = ({ settings }) => {
         className="grid w-full max-w-xl grid-cols-1 gap-6"
       >
         {prismicH.isFilled.richText(settings.data.newsletterDisclaimer) && (
-          <div className="text-center font-serif tracking-tight text-slate-500">
+          <div className="text-slate-500 text-center font-serif tracking-tight">
             <PrismicRichText
               field={settings.data.newsletterDescription}
               components={{
@@ -39,19 +39,19 @@ const SignUpForm = ({ settings }) => {
                 type="email"
                 placeholder="jane.doe@example.com"
                 required={true}
-                className="w-full rounded-none border-b border-slate-200 py-3 pl-3 pr-10 text-slate-800 placeholder-slate-400"
+                className="border-slate-200 text-slate-800 placeholder-slate-400 w-full rounded-none border-b py-3 pl-3 pr-10"
               />
             </label>
             <button
               type="submit"
-              className="absolute top-0 right-0 bottom-0 flex items-center justify-center px-3 text-2xl text-slate-400"
+              className="text-slate-400 absolute top-0 right-0 bottom-0 flex items-center justify-center px-3 text-2xl"
             >
               <span className="sr-only">Submit</span>
               <span aria-hidden={true}>&rarr;</span>
             </button>
           </div>
           {prismicH.isFilled.richText(settings.data.newsletterDisclaimer) && (
-            <p className="text-center text-xs tracking-tight text-slate-500">
+            <p className="text-slate-500 text-center text-xs tracking-tight">
               <PrismicText field={settings.data.newsletterDisclaimer} />
             </p>
           )}
@@ -67,7 +67,7 @@ export const Footer = ({ withSignUpForm = true, settings }) => {
       <div className="grid grid-cols-1 justify-items-center gap-24">
         <HorizontalDivider />
         {withSignUpForm && <SignUpForm settings={settings} />}
-        <div className="mx-auto w-full max-w-3xl text-center text-xs font-semibold tracking-tight text-slate-500">
+        <div className="text-slate-500 mx-auto w-full max-w-3xl text-center text-xs font-semibold tracking-tight">
           Proudly published using{" "}
           <PrismicLink href="https://prismic.io" className="text-slate-700">
             Prismic

@@ -6,6 +6,7 @@ export const Layout = ({
   withHeaderDivider,
   pagination,
   children,
+  pathname,
 }) => {
   return (
     <div className="text-slate-700 bg-bgYellow">
@@ -15,6 +16,7 @@ export const Layout = ({
         navigation={navigation}
         settings={settings}
         pagination={pagination}
+        pathname={pathname}
       />
       <main>{children}</main>
     </div>

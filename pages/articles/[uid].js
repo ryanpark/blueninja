@@ -10,9 +10,9 @@ import { Heading } from "../../components/Heading";
 import { HorizontalDivider } from "../../components/HorizontalDivider";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
   month: "short",
   day: "numeric",
-  year: "numeric",
 });
 
 const LatestArticle = ({ article }) => {
@@ -22,12 +22,12 @@ const LatestArticle = ({ article }) => {
 
   return (
     <li>
-      <h1 className="mb-3 text-3xl font-semibold tracking-tighter text-slate-800 md:text-4xl">
+      <h1 className="text-slate-800 mb-3 text-3xl font-semibold tracking-tighter md:text-4xl">
         <PrismicLink document={article}>
           <PrismicText field={article.data.title} />
         </PrismicLink>
       </h1>
-      <p className="font-serif italic tracking-tighter text-slate-500">
+      <p className="text-slate-500 tracking-tighter md:text-sm">
         {dateFormatter.format(date)}
       </p>
     </li>
@@ -43,7 +43,7 @@ const Article = ({ article, latestArticles, navigation, settings }) => {
     <Layout
       withHeaderDivider={false}
       withProfile={false}
-      navigation={navigation}
+      navigation={false}
       settings={settings}
     >
       <Head>
@@ -55,23 +55,23 @@ const Article = ({ article, latestArticles, navigation, settings }) => {
       <Bounded>
         <PrismicLink
           href="/"
-          className="font-semibold tracking-tight text-slate-400"
+          className="text-slate-400 font-semibold tracking-tight"
         >
-          &larr; Back to articles
+          &larr; Back
         </PrismicLink>
       </Bounded>
       <article>
         <Bounded className="pb-0">
-          <h1 className="mb-3 text-3xl font-semibold tracking-tighter text-slate-800 md:text-4xl">
+          <h1 className="text-slate-800 mb-3 text-3xl font-semibold tracking-tighter md:text-xl">
             <PrismicText field={article.data.title} />
           </h1>
-          <p className="font-serif italic tracking-tighter text-slate-500">
+          <p className="text-slate-500 tracking-tighter md:text-sm">
             {dateFormatter.format(date)}
           </p>
         </Bounded>
         <SliceZone slices={article.data.slices} components={components} />
       </article>
-      {latestArticles.length > 0 && (
+      {false && (
         <Bounded>
           <div className="grid grid-cols-1 justify-items-center gap-16 md:gap-24">
             <HorizontalDivider />
