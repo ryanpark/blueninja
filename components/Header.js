@@ -65,13 +65,17 @@ export const Header = ({
         profilePicture={settings.data.profilePicture}
       />
       <div className="grid grid-cols-1">
-        <nav className="flex justify-between">
+        <nav className="flex">
           {pagination}
-          <ul className="flex flex-wrap justify-end gap-2 sm:gap-2 md:gap-10 lg:gap-10">
+          <ul className="mx-4 flex flex-wrap justify-end gap-2 sm:gap-2 md:gap-10 lg:gap-10">
             {!pathname?.includes("/articles/") &&
               navigation.data?.links.map((item) => (
                 <NavItem key={prismicH.asText(item.label)}>
-                  <PrismicLink field={item.link}>
+                  <PrismicLink
+                    field={item.link}
+                    className="hover:underlin hover:text-textBlue
+"
+                  >
                     <PrismicText field={item.label} />
                   </PrismicLink>
                 </NavItem>

@@ -12,7 +12,12 @@ const Image = ({ slice }) => {
       <figure className="grid grid-cols-1 gap-4">
         {prismicH.isFilled.image(image) && (
           <div className="bg-gray-100">
-            <PrismicNextImage field={image} sizes="100vw" className="" />
+            <PrismicNextImage
+              field={image}
+              sizes="100vw"
+              style={{ color: "black" }}
+              className="border-black border-1 border"
+            />
           </div>
         )}
         {prismicH.isFilled.richText(slice.primary.caption) && (

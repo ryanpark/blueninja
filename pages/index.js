@@ -7,27 +7,6 @@ import { Layout } from "../components/Layout";
 import { Bounded } from "../components/Bounded";
 import { Pagination } from "../components/Pagination";
 
-import { default as NextLink } from "next/link";
-
-// import { hrefResolver, linkResolver } from "prismic-configuration";
-
-const chunkArrayInGroups = (arr, size) => {
-  const result = [];
-  let temp = [];
-
-  for (let a = 0; a < arr.length; a++) {
-    temp.push(arr[a]);
-    if (a % size === size - 1) {
-      result.push(temp);
-      temp = [];
-    }
-  }
-
-  if (temp.length > 0) result.push(temp);
-
-  return result;
-};
-
 const Index = ({ articles, navigation, settings, pathname }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -66,9 +45,9 @@ const Index = ({ articles, navigation, settings, pathname }) => {
 
 export default Index;
 
-export async function getStaticProps({ params, previewData }) {
+export async function getStaticProps({ previewData }) {
   const client = createClient({ previewData });
-  // const page = await client.getByUID("page", params.uid);
+
   const articles = await client.getByType("article", {
     orderings: [
       { field: "my.article.publishDate", direction: "desc" },
@@ -80,25 +59,12 @@ export async function getStaticProps({ params, previewData }) {
 
   const navigation = await client.getSingle("navigation");
   const settings = await client.getSingle("settings");
-  console.log(client);
+
   return {
     props: {
       articles,
       navigation,
       settings,
-      // params,
     },
   };
 }
-
-// export async function getStaticPaths() {
-//   const client = createClient();
-
-//   const pages = await client.getAllByType("page");
-//   const articles = await client.getAllByType("article");
-
-//   return {
-//     paths: [],
-//     fallback: false,
-//   };
-// }
