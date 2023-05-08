@@ -22,12 +22,12 @@ const LatestArticle = ({ article }) => {
 
   return (
     <li>
-      <h1 className="text-slate-800 mb-3 text-3xl font-semibold tracking-tighter md:text-4xl">
+      <h1 className="mb-3 text-3xl font-semibold tracking-tighter text-slate-800 md:text-4xl">
         <PrismicLink document={article}>
           <PrismicText field={article.data.title} />
         </PrismicLink>
       </h1>
-      <p className="text-slate-500 tracking-tighter md:text-sm">
+      <p className="tracking-tighter text-slate-500 md:text-sm">
         {dateFormatter.format(date)}
       </p>
     </li>
@@ -53,19 +53,16 @@ const Article = ({ article, latestArticles, navigation, settings }) => {
         </title>
       </Head>
       <Bounded>
-        <PrismicLink
-          href="/"
-          className="text-slate-400 font-semibold tracking-tight"
-        >
+        <PrismicLink href="/" className="font-semibold tracking-tight">
           &larr; Back
         </PrismicLink>
       </Bounded>
       <article>
         <Bounded className="pb-0">
-          <h1 className="text-slate-800 mb-3 text-3xl font-semibold tracking-tighter md:text-xl">
+          <h1 className="mb-3 text-3xl font-semibold tracking-tighter text-slate-800 md:text-xl">
             <PrismicText field={article.data.title} />
           </h1>
-          <p className="text-slate-500 tracking-tighter md:text-sm">
+          <p className="tracking-tighter text-slate-500 md:text-sm">
             {dateFormatter.format(date)}
           </p>
         </Bounded>

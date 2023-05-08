@@ -9,13 +9,14 @@ import { Layout } from "../components/Layout";
 import { Article } from "../components/Articles";
 import { Pagination } from "../components/Pagination";
 
-const Page = ({ articles, page, navigation, settings, pathname }) => {
+const Page = ({ articles, page, navigation, settings, pathname, loading }) => {
   const isContactPage = page?.uid === "contact-me";
   return (
     <Layout
       navigation={navigation}
       settings={settings}
       pathname={pathname}
+      loading={loading}
       pagination={<Pagination articles={articles} pos="header" />}
     >
       <Head>
@@ -32,7 +33,7 @@ const Page = ({ articles, page, navigation, settings, pathname }) => {
           {!isContactPage && (
             <ul className="grid grid-cols-1 gap-16">
               {articles?.results.map((article) => (
-                <Article key={article.id} article={article} />
+                <Article key={article.id} article={article} loading={loading} />
               ))}
             </ul>
           )}

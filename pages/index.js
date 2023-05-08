@@ -7,7 +7,7 @@ import { Layout } from "../components/Layout";
 import { Bounded } from "../components/Bounded";
 import { Pagination } from "../components/Pagination";
 
-const Index = ({ articles, navigation, settings, pathname }) => {
+const Index = ({ articles, navigation, settings, pathname, loading }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const Index = ({ articles, navigation, settings, pathname }) => {
       navigation={navigation}
       settings={settings}
       pathname={pathname}
+      loading={loading}
       pagination={<Pagination articles={articles} pos="header" />}
     >
       <Head>
@@ -31,9 +32,10 @@ const Index = ({ articles, navigation, settings, pathname }) => {
             <Article key={article.id} article={article} index={i} />
           ))}
         </ul> */}
+
         <ul className="grid grid-cols-1 gap-16">
           {articles?.results.map((article) => (
-            <Article key={article.id} article={article} />
+            <Article key={article.id} article={article} loading={loading} />
           ))}
         </ul>
 

@@ -4,14 +4,13 @@ import { PrismicNextImage } from "@prismicio/next";
 
 import { Bounded } from "./Bounded";
 import { Heading } from "./Heading";
-import { HorizontalDivider } from "./HorizontalDivider";
 
 const Profile = ({ name, description, profilePicture }) => {
   return (
     <div className="">
       <div className="flex max-w-lg gap-4 py-6">
         <PrismicLink href="/" tabIndex="-1">
-          <div className="bg-slate-300 relative top-[6px] h-[30px] w-[30px] overflow-hidden">
+          <div className="relative top-[6px] h-[30px] w-[30px] overflow-hidden bg-slate-300">
             {prismicH.isFilled.image(profilePicture) && (
               <PrismicNextImage
                 field={profilePicture}
@@ -32,7 +31,7 @@ const Profile = ({ name, description, profilePicture }) => {
               </Heading>
             )}
             {prismicH.isFilled.richText(description) && (
-              <p className="text-slate-500 font-serif text-2xl italic leading-normal tracking-tight">
+              <p className="font-serif text-2xl italic leading-normal tracking-tight text-slate-500">
                 <PrismicText field={description} />
               </p>
             )}
@@ -45,7 +44,7 @@ const Profile = ({ name, description, profilePicture }) => {
 
 const NavItem = ({ children }) => {
   return (
-    <li className="text-slate-800 font-semibold tracking-tight">{children}</li>
+    <li className="font-semibold tracking-tight text-slate-800">{children}</li>
   );
 };
 
@@ -82,8 +81,6 @@ export const Header = ({
               ))}
           </ul>
         </nav>
-
-        {withDivider && <HorizontalDivider />}
       </div>
     </Bounded>
   );

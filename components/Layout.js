@@ -7,9 +7,10 @@ export const Layout = ({
   pagination,
   children,
   pathname,
+  loading,
 }) => {
   return (
-    <div className="text-slate-700 bg-bgYellow">
+    <div className="bg-bgYellow text-slate-900">
       <Header
         withProfile={false}
         withDivider={withHeaderDivider}

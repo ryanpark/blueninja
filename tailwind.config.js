@@ -6,10 +6,11 @@ module.exports = {
       serif:
         '"Libre Baskerville", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
     },
-    extend: {},
-    colors: {
-      bgYellow: "#ffff24",
-      textBlue: "#00ffff",
+    extend: {
+      colors: {
+        bgYellow: "#ffff24",
+        textBlue: "#00ffff",
+      },
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],

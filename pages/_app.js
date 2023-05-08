@@ -1,4 +1,6 @@
+import React from "react";
 import Link from "next/link";
+import Router from "next/router";
 import { PrismicLink, PrismicProvider } from "@prismicio/react";
 import { PrismicPreview } from "@prismicio/next";
 
@@ -37,7 +39,7 @@ const richTextComponents = {
     <li className="mb-1 list-disc pl-1 last:mb-0 md:pl-2">{children}</li>
   ),
   preformatted: ({ children }) => (
-    <pre className="bg-slate-100 mb-7 rounded p-4 text-sm last:mb-0 md:p-8 md:text-lg">
+    <pre className="mb-7 rounded bg-slate-100 p-4 text-sm last:mb-0 md:p-8 md:text-lg">
       <code>{children}</code>
     </pre>
   ),
@@ -55,6 +57,26 @@ const richTextComponents = {
 };
 
 export default function App({ Component, pageProps, router }) {
+  const [loading, setLoading] = React.useState(false);
+  React.useEffect(() => {
+    const start = () => {
+      console.log("start");
+      setLoading(true);
+    };
+    const end = () => {
+      console.log("finished");
+      setLoading(false);
+    };
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
+
   const pathname = router.state?.pathname;
   return (
     <PrismicProvider
@@ -88,7 +110,7 @@ export default function App({ Component, pageProps, router }) {
         </div>
       )}
       <PrismicPreview repositoryName={repositoryName}>
-        <Component {...pageProps} pagination={""} pathname={pathname} />
+        <Component {...pageProps} pathname={pathname} loading={loading} />
       </PrismicPreview>
     </PrismicProvider>
   );

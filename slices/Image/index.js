@@ -11,17 +11,17 @@ const Image = ({ slice }) => {
     <Bounded as="section" size={slice.variation === "wide" ? "widest" : "base"}>
       <figure className="grid grid-cols-1 gap-4">
         {prismicH.isFilled.image(image) && (
-          <div className="bg-gray-100">
+          <div>
             <PrismicNextImage
               field={image}
               sizes="100vw"
               style={{ color: "black" }}
-              className="border-black border-1 border"
+              className="border-1 border border-black"
             />
           </div>
         )}
         {prismicH.isFilled.richText(slice.primary.caption) && (
-          <figcaption className="text-slate-500 text-center  tracking-tight">
+          <figcaption className="text-center tracking-tight  text-slate-500">
             <PrismicRichText field={slice.primary.caption} />
           </figcaption>
         )}
