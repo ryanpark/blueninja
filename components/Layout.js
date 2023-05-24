@@ -1,4 +1,5 @@
 import { Header } from "./Header";
+import { Loaders } from "./Loaders";
 
 export const Layout = ({
   navigation,
@@ -8,6 +9,7 @@ export const Layout = ({
   children,
   pathname,
   loading,
+  isContactPage,
 }) => {
   return (
     <div className="bg-bgYellow text-slate-900">
@@ -18,8 +20,9 @@ export const Layout = ({
         settings={settings}
         pagination={pagination}
         pathname={pathname}
+        isContactPage={isContactPage}
       />
-      <main>{children}</main>
+      <main>{loading ? <Loaders /> : children}</main>
     </div>
   );
 };

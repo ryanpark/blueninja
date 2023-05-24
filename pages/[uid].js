@@ -17,7 +17,14 @@ const Page = ({ articles, page, navigation, settings, pathname, loading }) => {
       settings={settings}
       pathname={pathname}
       loading={loading}
-      pagination={<Pagination articles={articles} pos="header" />}
+      isContactPage={isContactPage}
+      pagination={
+        <Pagination
+          articles={articles}
+          pos="header"
+          isContactPage={isContactPage}
+        />
+      }
     >
       <Head>
         <title>
@@ -37,7 +44,11 @@ const Page = ({ articles, page, navigation, settings, pathname, loading }) => {
               ))}
             </ul>
           )}
-          <Pagination articles={articles} pos="footer" />
+          <Pagination
+            articles={articles}
+            pos="footer"
+            isContactPage={isContactPage}
+          />
         </div>
       </div>
     </Layout>

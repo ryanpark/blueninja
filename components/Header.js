@@ -42,17 +42,22 @@ const Profile = ({ name, description, profilePicture }) => {
   );
 };
 
-const NavItem = ({ children }) => {
+const NavItem = ({ children, isContactPage }) => {
   return (
-    <li className="font-semibold tracking-tight text-slate-800">{children}</li>
+    <li
+      className={`text-slate-800" font-semibold tracking-tight ${
+        isContactPage && "text-textBlue underline"
+      }`}
+    >
+      {children}
+    </li>
   );
 };
 
 export const Header = ({
-  withDivider = true,
-  withProfile = true,
   navigation,
   settings,
+  isContactPage,
   pagination,
   pathname,
 }) => {
@@ -69,7 +74,10 @@ export const Header = ({
           <ul className="mx-4 flex flex-wrap justify-end gap-2 sm:gap-2 md:gap-10 lg:gap-10">
             {!pathname?.includes("/articles/") &&
               navigation.data?.links.map((item) => (
-                <NavItem key={prismicH.asText(item.label)}>
+                <NavItem
+                  key={prismicH.asText(item.label)}
+                  isContactPage={isContactPage}
+                >
                   <PrismicLink
                     field={item.link}
                     className="hover:underlin hover:text-textBlue

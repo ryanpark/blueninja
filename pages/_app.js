@@ -58,13 +58,12 @@ const richTextComponents = {
 
 export default function App({ Component, pageProps, router }) {
   const [loading, setLoading] = React.useState(false);
+  const pathname = router.state?.pathname;
   React.useEffect(() => {
     const start = () => {
-      console.log("start");
       setLoading(true);
     };
     const end = () => {
-      console.log("finished");
       setLoading(false);
     };
     Router.events.on("routeChangeStart", start);
@@ -77,7 +76,6 @@ export default function App({ Component, pageProps, router }) {
     };
   }, []);
 
-  const pathname = router.state?.pathname;
   return (
     <PrismicProvider
       internalLinkComponent={(props) => <Link {...props} />}
