@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html className="h-screen bg-bgYellow">
-      <title>test</title>
+      <title>test here</title>
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
